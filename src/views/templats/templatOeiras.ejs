@@ -10,10 +10,10 @@
 </head>
 
 <body>
-  <% if (tagData.length> 0) { %>
-    <% tagData.forEach(tag=> { %>
+  <% if (tags.length > 0) { %>
+    <% tags.forEach(tag => { %>
 
-      <div class="container">
+      <div class="container <%= tag.page ? 'page' : '' %>">
         <div class="logos">
           <img class="logo_left"
             src="https://ik.imagekit.io/2bd11h34bw/relatorios/logos_youeduc/logo_amigo_w18utqnmBI.png?ik-sdk-version=javascript-1.4.3&updatedAt=1653062765031"
@@ -63,317 +63,103 @@
          </div>
       </div>
       <% })%>
-        <% } %>
-</body>
-
-
-<style>
-  body {
-    display: flex;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 793px;
-    height: 1120px;
-    justify-content: center;
-    align-items: center;
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 32px 0px 32px 0px;
-  }
-
-  .container {
-    width: 360px;
-    height: 240px;
-    border: 1px solid #000;
-    margin: 2px;
-    padding: 0px 4px 0px 4px ; 
-    box-shadow: 0px 0px 10px #888888;
-    border-radius: 2px;
-  }
-
-  .container:nth-child(9),
-  .container:nth-child(10),
-  .container:nth-child(17),
-  .container:nth-child(18),
-  .container:nth-child(25),
-  .container:nth-child(26),
-  .container:nth-child(33),
-  .container:nth-child(34),
-  .container:nth-child(41),
-  .container:nth-child(42),
-  .container:nth-child(49),
-  .container:nth-child(50),
-  .container:nth-child(57),
-  .container:nth-child(58),
-  .container:nth-child(65),
-  .container:nth-child(66),
-  .container:nth-child(73),
-  .container:nth-child(74),
-  .container:nth-child(81),
-  .container:nth-child(82),
-  .container:nth-child(89),
-  .container:nth-child(90),
-  .container:nth-child(97),
-  .container:nth-child(98),
-  .container:nth-child(105),
-  .container:nth-child(106),
-  .container:nth-child(113),
-  .container:nth-child(114),
-  .container:nth-child(121),
-  .container:nth-child(122),
-  .container:nth-child(129),
-  .container:nth-child(130),
-  .container:nth-child(137),
-  .container:nth-child(138),
-  .container:nth-child(145),
-  .container:nth-child(146),
-  .container:nth-child(153),
-  .container:nth-child(154),
-  .container:nth-child(161),
-  .container:nth-child(162),
-  .container:nth-child(169),
-  .container:nth-child(170),
-  .container:nth-child(177),
-  .container:nth-child(178),
-  .container:nth-child(185),
-  .container:nth-child(186),
-  .container:nth-child(193),
-  .container:nth-child(194),
-  .container:nth-child(201),
-  .container:nth-child(202),
-  .container:nth-child(209),
-  .container:nth-child(210),
-  .container:nth-child(217),
-  .container:nth-child(218),
-  .container:nth-child(225),
-  .container:nth-child(226),
-  .container:nth-child(233),
-  .container:nth-child(234),
-  .container:nth-child(241),
-  .container:nth-child(242),
-  .container:nth-child(249),
-  .container:nth-child(250),
-  .container:nth-child(257),
-  .container:nth-child(258),
-  .container:nth-child(265),
-  .container:nth-child(266),
-  .container:nth-child(273),
-  .container:nth-child(274),
-  .container:nth-child(281),
-  .container:nth-child(282),
-  .container:nth-child(289),
-  .container:nth-child(290),
-  .container:nth-child(297),
-  .container:nth-child(298),
-  .container:nth-child(305),
-  .container:nth-child(306),
-  .container:nth-child(313),
-  .container:nth-child(314),
-  .container:nth-child(321),
-  .container:nth-child(322),
-  .container:nth-child(329),
-  .container:nth-child(330),
-  .container:nth-child(337),
-  .container:nth-child(338),
-  .container:nth-child(345),
-  .container:nth-child(346),
-  .container:nth-child(353),
-  .container:nth-child(354),
-  .container:nth-child(361),
-  .container:nth-child(362),
-  .container:nth-child(369),
-  .container:nth-child(370),
-  .container:nth-child(377),
-  .container:nth-child(378),
-  .container:nth-child(385),
-  .container:nth-child(386),
-  .container:nth-child(393),
-  .container:nth-child(394),
-  .container:nth-child(401),
-  .container:nth-child(402),
-  .container:nth-child(409),
-  .container:nth-child(410),
-  .container:nth-child(417),
-  .container:nth-child(418),
-  .container:nth-child(425),
-  .container:nth-child(426),
-  .container:nth-child(433),
-  .container:nth-child(434),
-  .container:nth-child(441),
-  .container:nth-child(442),
-  .container:nth-child(449),
-  .container:nth-child(450),
-  .container:nth-child(457),
-  .container:nth-child(458),
-  .container:nth-child(465),
-  .container:nth-child(466),
-  .container:nth-child(473),
-  .container:nth-child(474),
-  .container:nth-child(481),
-  .container:nth-child(482),
-  .container:nth-child(489),
-  .container:nth-child(490),
-  .container:nth-child(497),
-  .container:nth-child(498),
-  .container:nth-child(505),
-  .container:nth-child(506),
-  .container:nth-child(513),
-  .container:nth-child(514),
-  .container:nth-child(521),
-  .container:nth-child(522),
-  .container:nth-child(529),
-  .container:nth-child(530),
-  .container:nth-child(537),
-  .container:nth-child(538),
-  .container:nth-child(545),
-  .container:nth-child(546),
-  .container:nth-child(553),
-  .container:nth-child(554),
-  .container:nth-child(561),
-  .container:nth-child(562),
-  .container:nth-child(569),
-  .container:nth-child(570),
-  .container:nth-child(577),
-  .container:nth-child(578),
-  .container:nth-child(585),
-  .container:nth-child(586),
-  .container:nth-child(593),
-  .container:nth-child(594),
-  .container:nth-child(601),
-  .container:nth-child(602),
-  .container:nth-child(609),
-  .container:nth-child(610),
-  .container:nth-child(617),
-  .container:nth-child(618),
-  .container:nth-child(625),
-  .container:nth-child(626),
-  .container:nth-child(633),
-  .container:nth-child(634),
-  .container:nth-child(641),
-  .container:nth-child(642),
-  .container:nth-child(649),
-  .container:nth-child(650),
-  .container:nth-child(657),
-  .container:nth-child(658),
-  .container:nth-child(665),
-  .container:nth-child(666),
-  .container:nth-child(673),
-  .container:nth-child(674),
-  .container:nth-child(681),
-  .container:nth-child(682),
-  .container:nth-child(689),
-  .container:nth-child(690),
-  .container:nth-child(697),
-  .container:nth-child(698),
-  .container:nth-child(705),
-  .container:nth-child(706),
-  .container:nth-child(713),
-  .container:nth-child(714),
-  .container:nth-child(721),
-  .container:nth-child(722),
-  .container:nth-child(729),
-  .container:nth-child(730),
-  .container:nth-child(737),
-  .container:nth-child(738),
-  .container:nth-child(745),
-  .container:nth-child(746),
-  .container:nth-child(753),
-  .container:nth-child(754),
-  .container:nth-child(761),
-  .container:nth-child(762),
-  .container:nth-child(769),
-  .container:nth-child(770),
-  .container:nth-child(777),
-  .container:nth-child(778),
-  .container:nth-child(785),
-  .container:nth-child(786),
-  .container:nth-child(793),
-  .container:nth-child(794),
-  .container:nth-child(801),
-  .container:nth-child(802) {
-    margin-top: 151px;
-  }
-
-
-  .logos {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .logo_left {
-    height: 50px;
-    width: 100px;
-    margin-right: -16px;
-  }
-  .container_logo_center{
-    padding: 8px 0px 0px 0px;
-  }
+    <% } %>
   
-  .logo_center {
-    height: 45px;
-    width: 75px;
-  }
-
-  .logo_right {
-    height: 40px;
-    width: 64px;
-    margin-right: 8px;
-    margin-top: 2px;
-  }
-
-  .title {
-    font-size: 16px;
-    text-align: center;
-  }
-
-  .content {
-    font-size: 13px;
-    padding: 0px 8px 0px 8px;
-  }
-
-  .container_fields_names_qrcode {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0px 8px 0px;
-  }
-
-  .content_fields_names_qrcode {
-    display: flex;
-    flex-direction: column;
-    align-items: space-between;
-    height: 70px;
-
-  }
-
-  .content_field_name_serie_turma_turno {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .fields_names_qrcode {
-    display: flex;
-    flex-direction: column;
-    height: 70px;
-    justify-content: space-between;
-  }
-
-  .field_name {
-    margin-right: 16px;
-    font-weight: 700;
-  }
-
-  .field_name strong {
-    margin-right: 2px;
-  }
-
-  .qrcode {
-    height: 65px;
-    width: 65px;
-  }
+<style>
+    body {
+      display: flex;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+      width: 793px;
+      height: 1120px;
+      align-items: center;  
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 32px 0px 32px 0px;
+    }
+  
+    .container {
+      width: 360px;
+      height: 240px;
+      border: 1px solid #000;
+      margin: 2px;
+      padding: 0px 4px 0px 4px ; 
+      border-radius: 2px;
+    }
+  
+      .logos {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .logo_left {
+      height: 50px;
+      width: 100px;
+      margin-right: -16px;
+    }
+    .container_logo_center{
+      padding: 8px 0px 0px 0px;
+    }
+    
+    .logo_center {
+      height: 45px;
+      width: 75px;
+    }
+  
+    .logo_right {
+      height: 40px;
+      width: 64px;
+      margin-right: 8px;
+      margin-top: 2px;
+    }
+  
+    .title {
+      font-size: 16px;
+      text-align: center;
+    }
+  
+    .content {
+      font-size: 13px;
+      padding: 0px 8px 0px 8px;
+    }
+  
+    .container_fields_names_qrcode {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0px 8px 0px;
+    }
+  
+    .content_fields_names_qrcode {
+      display: flex;
+      flex-direction: column;
+      align-items: space-between;
+      height: 70px;
+  
+    }
+  
+    .content_field_name_serie_turma_turno {
+      display: flex;
+      flex-direction: row;
+    }
+  
+    .fields_names_qrcode {
+      display: flex;
+      flex-direction: column;
+      height: 70px;
+      justify-content: space-between;
+    }
+  
+    .field_name {
+      margin-right: 16px;
+      font-weight: 700;
+    }
+  
+    .field_name strong {
+      margin-right: 2px;
+    }
+  
 </style>
-
+</body>
 </html>

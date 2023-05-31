@@ -8,28 +8,29 @@ const QRCode = require('qrcode');
 const moment = require("moment");
 const crypto = require("crypto");
 const selectTemplate = require("../util/selectTemplate");
+const { chunk } = require("lodash");
 
 const pouchesTags = async (request, response) => {
 
-  const { discipline, evaluation, client } = request.body  
+  const { discipline, evaluation, client } = request.body
   const { file } = request
 
-  if(!file) {
+  if (!file) {
     return response.status(400).json(
-      { message: 'O arquivo com a lista de alunos é obrigatório'})
-  }
-  
-  if(!discipline) {
-    return response.status(400).json({ message: 'O nome da disciplina é obrigatório'})
+      { message: 'O arquivo com a lista de alunos é obrigatório' })
   }
 
-  if(!evaluation) {
-    return response.status(400).json({ message: 'O nome da avaliação é obrigatório'})
+  if (!discipline) {
+    return response.status(400).json({ message: 'O nome da disciplina é obrigatório' })
   }
 
-  if(!client) {
+  if (!evaluation) {
+    return response.status(400).json({ message: 'O nome da avaliação é obrigatório' })
+  }
+
+  if (!client) {
     return response.status(400).json(
-      { message: 'O client é obrigatório', example: clients})
+      { message: 'O client é obrigatório', example: clients })
   }
 
   const templatName = selectTemplate(response, client);
@@ -63,14 +64,14 @@ const pouchesTags = async (request, response) => {
 
     const dataURL = `${schools[i].nameSchool} ${schools[i].currentYear} ${schools[i].class}`
 
-    const qrcodeDataURL = await QRCode.toDataURL(dataURL);
+    // const qrcodeDataURL = await QRCode.toDataURL(dataURL);
 
     items.push({
       nameSchool: schools[i].nameSchool,
       currentYear: schools[i].currentYear,
       class: schools[i].class,
       period: schools[i].period,
-      qrcodeURL: qrcodeDataURL
+      // qrcodeURL: qrcodeDataURL
     });
 
   };
@@ -81,8 +82,10 @@ const pouchesTags = async (request, response) => {
     schools.filter((filter) =>
       school.nameSchool === filter.nameSchool &&
       school.currentYear === filter.currentYear &&
-      school.class === filter.class &&
-      school.qrcodeURL === filter.qrcodeURL)
+      school.class === filter.class
+      // &&
+      // school.qrcodeURL === filter.qrcodeURL
+    )
 
     const ListStudentsTheUniqueByClass = schools.filter((filter) =>
       school.nameSchool === filter.nameSchool &&
@@ -106,9 +109,31 @@ const pouchesTags = async (request, response) => {
   tagData.sort((a, b) => a.currentYear > b.currentYear ? 1 : a.currentYear < b.currentYear ? -1 : 0)
   tagData.sort((a, b) => a.nameSchool > b.nameSchool ? 1 : a.nameSchool < b.nameSchool ? -1 : 0)
 
+  const itemsPerPages = 8
+  let chunks = []
+  let tags = []
+ 
+  for (let i = 0; i < tagData.length; i += itemsPerPages) {
+    const chunk = tagData.slice(i, i + itemsPerPages);
+
+    if (chunk.length > 0) {
+      const lastElementIndex = i + chunk.length - 1;
+      tagData[lastElementIndex].page = Math.ceil((i + 1) / itemsPerPages);
+    }
+
+    chunks.push(chunk)
+    
+  }
+
+  for (let i = 0; i < chunks.length; i++) {
+    for(let j = 0; j < chunks[i].length; j++) {
+      tags.push(chunks[i][j])
+    }
+  }
+
   const filePathTemplat = path.join(__dirname, "../", "views", "templats", templatName);
 
-  ejs.renderFile(filePathTemplat, { tagData }, async (err, html) => {
+  ejs.renderFile(filePathTemplat, { tags }, async (err, html) => {
     if (err) {
       return response.status(500).json({ message: "Erro na leitura do arquivo" })
     }

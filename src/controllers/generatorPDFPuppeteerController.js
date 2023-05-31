@@ -15,12 +15,14 @@ const generatorPDFPuppeteer = async (html, fileName) => {
     console.log(error);
     throw new Error(error);
   }
-
+  
   await page.setContent(html);
-
+    
   const destinationFolder = path.resolve("tmp", `${fileName}`)
 
-  await page.pdf({ path: destinationFolder, format: 'A4' })
+  await page.addStyleTag({ content: '@media print { .page { page-break-after: always; } }' });
+  
+  await page.pdf({ path: destinationFolder, format: 'A4'})
 
   await browser.close() 
 }
